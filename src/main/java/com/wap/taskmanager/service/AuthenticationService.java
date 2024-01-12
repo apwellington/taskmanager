@@ -3,7 +3,6 @@ package com.wap.taskmanager.service;
 import com.wap.taskmanager.entity.User;
 import com.wap.taskmanager.repository.UserRepository;
 import com.wap.taskmanager.service.dto.LoginRequestDTO;
-import com.wap.taskmanager.service.dto.LoginResponseDTO;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
