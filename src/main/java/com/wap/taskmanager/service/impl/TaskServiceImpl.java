@@ -14,6 +14,8 @@ import com.wap.taskmanager.service.dto.request.CreateUpdateTaskDto;
 import com.wap.taskmanager.service.dto.response.TaskDTO;
 import com.wap.taskmanager.service.mapper.TaskMapper;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import java.util.List;
