@@ -2,6 +2,7 @@ package com.wap.taskmanager.config;
 
 
 import com.wap.taskmanager.service.JwtService;
+import io.jsonwebtoken.MalformedJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -72,7 +73,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             filterChain.doFilter(request, response);
         } catch (Exception exception) {
-            handlerExceptionResolver.resolveException(request, response, null, exception);
+            handlerExceptionResolver.resolveException(request, response, null, new MalformedJwtException(exception.getMessage()));
         }
     }
 }

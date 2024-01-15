@@ -1,5 +1,6 @@
 package com.wap.taskmanager.entity;
 
+import com.wap.taskmanager.util.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +21,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements UserDetails {
+public class User extends AbstractEntity implements UserDetails  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,8 +32,8 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Set<Task> tasks = new HashSet<>();
+    @Enumerated(EnumType.STRING)
+    private UserRole rol;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
