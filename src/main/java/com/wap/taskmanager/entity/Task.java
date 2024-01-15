@@ -17,7 +17,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Task {
+public class Task extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,16 +25,11 @@ public class Task {
     private String name;
     @Column(nullable = false)
     private String description;
-    @Column(nullable = false)
+
     private LocalDate startDate;
 
     private LocalDate expirationDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private TaskStatus status;
-
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tasks")
-    private Set<User> user = new HashSet<>();
-
 }

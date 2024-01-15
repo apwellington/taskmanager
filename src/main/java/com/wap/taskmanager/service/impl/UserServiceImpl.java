@@ -5,9 +5,11 @@ import com.wap.taskmanager.exception.UserException;
 import com.wap.taskmanager.exception.UserNotFoundException;
 import com.wap.taskmanager.repository.UserRepository;
 import com.wap.taskmanager.service.UserService;
-import com.wap.taskmanager.service.dto.UserDTO;
+import com.wap.taskmanager.service.dto.request.CreateUpdateUserDto;
+import com.wap.taskmanager.service.dto.response.UserDTO;
 import com.wap.taskmanager.service.mapper.UserMapper;
 import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.NotNull;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,7 +33,8 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserDTO findById(Long id) {
+    public UserDTO findById(@NotNull Long id) {
+        log.info("UserServiceImpl | findById({})", id);
         try {
             User user = userRepository.findById(id)
                     .orElseThrow(() -> new UserNotFoundException("User not found by id:" + id));
@@ -48,6 +51,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> findAll() {
+        log.info("UserServiceImpl | findAll()");
         try {
             return userRepository.findAll().stream().map(userMapper::userToUserDTO).collect(Collectors.toList());
         } catch (Exception e) {
@@ -59,9 +63,10 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public UserDTO saveOrUpdate(UserDTO userDTO) {
+    public UserDTO saveOrUpdate(@NotNull CreateUpdateUserDto userDTO) {
+        log.info("UserServiceImpl | saveOrUpdate({})", userDTO);
         try {
-            User user = userMapper.userDTOToUser(userDTO);
+             User user = userMapper.createUpdateUserDTOToUser(userDTO);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             User savedUser = userRepository.save(user);
             return userMapper.userToUserDTO(savedUser);
@@ -73,7 +78,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(@NotNull Long id) {
+        log.info("UserServiceImpl | deleteById({})", id);
         try {
             User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Not found user by id: " + id));
             userRepository.delete(user);

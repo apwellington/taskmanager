@@ -1,4 +1,4 @@
-package com.wap.taskmanager.service.dto;
+package com.wap.taskmanager.service.dto.response;
 
 
 import lombok.AllArgsConstructor;
@@ -9,10 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
-
     private Long id;
-
     private String username;
-
-    private String password;
 }

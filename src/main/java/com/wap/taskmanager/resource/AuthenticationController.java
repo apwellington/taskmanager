@@ -3,9 +3,10 @@ package com.wap.taskmanager.resource;
 
 import com.wap.taskmanager.entity.User;
 import com.wap.taskmanager.service.AuthenticationService;
+import com.wap.taskmanager.service.impl.AuthenticationServiceImpl;
 import com.wap.taskmanager.service.JwtService;
-import com.wap.taskmanager.service.dto.LoginRequestDTO;
-import com.wap.taskmanager.service.dto.LoginResponseDTO;
+import com.wap.taskmanager.service.dto.request.LoginRequestDTO;
+import com.wap.taskmanager.service.dto.response.LoginResponseDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,7 @@ public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
-    public AuthenticationController(JwtService jwtService, AuthenticationService authenticationService) {
+    public AuthenticationController(JwtService jwtService, AuthenticationServiceImpl authenticationService) {
         this.jwtService = jwtService;
         this.authenticationService = authenticationService;
     }
