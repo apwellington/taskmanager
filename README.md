@@ -21,7 +21,7 @@
 ```
 5. Abrir el navegador y acceder a la siguiente url para ver la documentacion de la api.
 ```
-   http://localhost:8080/docs/swagger-ui/index.html
+   http://localhost:8080/swagger-ui/index.html
 ```
 
 
